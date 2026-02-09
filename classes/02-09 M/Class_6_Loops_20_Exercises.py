@@ -5,13 +5,20 @@
 
 # %%
 # TODO: write your solution below
+for i in range (1,11):
+    print(i)
 
 
 # %%
 # Exercise 2
 # ### Exercise 2
 # Print only the even numbers from 0–20.
-
+for i in range (21):
+    if i % 2 == 0:
+        print(i)
+#or
+for i in range (0,21,2):
+        print(i)
 # %%
 # TODO: write your solution below
 
@@ -20,7 +27,14 @@
 # Exercise 3
 # ### Exercise 3
 # Given `word = "banana"`, count how many `'a'` characters appear.
+word = 'banana'
+count = 0 
+for chr in word:
+     if chr == 'a':
+          count += 1
+print(count)
 
+print(word.count('a'))
 # %%
 # TODO: write your solution below
 
@@ -37,7 +51,11 @@
 
 # %%
 # TODO: write your solution below
+names = ["Bob", "Alice", "Jen"]
+scores = [88, 92, 95] 
 
+for name,score in zip(names,scores):
+     print(name,score)
 
 # %%
 # Exercise 5
@@ -50,7 +68,9 @@
 
 # %%
 # TODO: write your solution below
-
+d = {"a": 1, "b": 2, "c": 3}
+for key, value in d.items():
+     print(key, '->', value, d[key])
 
 # %%
 # Exercise 6
@@ -61,6 +81,11 @@
 
 # %%
 # TODO: write your solution below
+lst = [1,3,-5,66,-77,-88,34,-22,5,9]
+
+for digit in lst:
+     if digit >= 0:
+          print(digit)
 
 
 # %%
