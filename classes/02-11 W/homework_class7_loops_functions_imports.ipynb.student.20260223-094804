@@ -1,0 +1,1163 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "0",
+   "metadata": {},
+   "source": [
+    "# Homework — Loops, Functions, and Imports\n",
+    "\n",
+    "**Graded Assignment — Read Carefully**\n",
+    "\n",
+    "This homework emphasizes **reasoning, prediction, and explanation**, not just producing output.\n",
+    "\n",
+    "## Rules\n",
+    "- Do **not** run code until instructed.\n",
+    "- For every problem:\n",
+    "  1. Write your **prediction**\n",
+    "  2. Write a **brief explanation** (1–3 sentences)\n",
+    "  3. Then run and compare\n",
+    "\n",
+    "Partial credit is awarded for clear reasoning, even if the prediction is incorrect."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "1",
+   "metadata": {},
+   "source": [
+    "## Part A — Loops (8 problems)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "2",
+   "metadata": {},
+   "source": [
+    "### Problem 1 — Accumulator with condition\n",
+    "Predict the final value of `total`.\n",
+    "```python\n",
+    "nums = [3, 6, 2, 5, 4]\n",
+    "total = 0\n",
+    "for n in nums:\n",
+    "    if n % 2 == 0:\n",
+    "        total += n\n",
+    "    else:\n",
+    "        total -= 1\n",
+    "print(total)\n",
+    "```\n",
+    "Explain *why*."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 17,
+   "id": "3",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "10\n"
+     ]
+    },
+    {
+     "data": {
+      "text/plain": [
+       "'\\nOnly even numbers were added and for every odd number 1 was subtracted from the total which\\nresulted in 10.\\n'"
+      ]
+     },
+     "execution_count": 17,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "\n",
+    "nums = [3, 6, 2, 5, 4]\n",
+    "total = 0\n",
+    "for n in nums:\n",
+    "    if n % 2 == 0:\n",
+    "        total += n\n",
+    "    else:\n",
+    "        total -= 1\n",
+    "print(total)\n",
+    "\n",
+    "# Prediction:\n",
+    "'''\n",
+    "I beleive that the final total will be 10.\n",
+    "'''\n",
+    "# Explanation:\n",
+    "'''\n",
+    "Only even numbers were added and for every odd number 1 was subtracted from the total which\n",
+    "resulted in 10.\n",
+    "'''\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "4",
+   "metadata": {},
+   "source": [
+    "### Problem 2 — Nested loops with dependent ranges\n",
+    "Predict the exact output.\n",
+    "```python\n",
+    "for i in range(1, 4):\n",
+    "    for j in range(i):\n",
+    "        print(i, end=\" \")\n",
+    "    print()\n",
+    "```"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "5",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "1 \n",
+      "2 2 \n",
+      "3 3 3 \n"
+     ]
+    },
+    {
+     "data": {
+      "text/plain": [
+       "'\\nI think that the output will be 1 1\\n                                2 2 2  \\n                                3 3 3\\n'"
+      ]
+     },
+     "execution_count": 2,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "\n",
+    "for i in range(1, 4):\n",
+    "    for j in range(i):\n",
+    "        print(i, end=\" \")\n",
+    "    print()\n",
+    "\n",
+    "# Prediction:\n",
+    "'''\n",
+    "I think that the output will be 1\n",
+    "                                2 2  \n",
+    "                                3 3 3\n",
+    "'''\n",
+    "# Explanation:\n",
+    "'''\n",
+    "For each value between 1 and 4(excluding 4), \n",
+    "i will be printed the same number of times as its value(i will be printed i times). This is due to the\n",
+    "nested for loop structure of the code.\n",
+    "This results in one 1, two 2s and three 3s being printed\n",
+    "'''\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "6",
+   "metadata": {},
+   "source": [
+    "### Problem 3 — Loop with early termination\n",
+    "Predict the output.\n",
+    "```python\n",
+    "for n in range(2, 20):\n",
+    "    if n % 7 == 0:\n",
+    "        print(\"hit\", n)\n",
+    "        break\n",
+    "    print(n)\n",
+    "```"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "7",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "2\n",
+      "3\n",
+      "4\n",
+      "5\n",
+      "6\n",
+      "hit 7\n"
+     ]
+    },
+    {
+     "data": {
+      "text/plain": [
+       "'\\nI think the printed statement will be:\\n2 3 4 5 6 hit 7 8 9 10 11 12 13 hit 14 15 16 17 18 19\\n'"
+      ]
+     },
+     "execution_count": 3,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "\n",
+    "for n in range(2, 20):\n",
+    "    if n % 7 == 0:\n",
+    "        print(\"hit\", n)\n",
+    "        break\n",
+    "    print(n)\n",
+    "\n",
+    "\n",
+    "# Prediction:\n",
+    "'''\n",
+    "I think the printed statement will be:\n",
+    "2 3 4 5 6 hit 7\n",
+    "'''\n",
+    "\n",
+    "# Explanation:\n",
+    "'''\n",
+    "The code above starts at 2 and prints 2 and its following numbers up to 20(excluding 20).\n",
+    "The if statement checks each value of n to see if n%7 == 0.\n",
+    "If the conditions are not met then the number is just printed but if it is met then the loop breaks\n",
+    "and a different print statement is executed. \n",
+    "Each number is printed on its own line and that the loop stops immediately after hitting 7.\n",
+    "\n",
+    "'''\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "8",
+   "metadata": {},
+   "source": [
+    "### Problem 4 — Loop invariant\n",
+    "State the loop invariant for `total` *before* predicting the output.\n",
+    "```python\n",
+    "nums = [5, 1, 4, 2]\n",
+    "total = 0\n",
+    "for n in nums:\n",
+    "    total = max(total, n)\n",
+    "print(total)\n",
+    "```"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "9",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "5\n"
+     ]
+    },
+    {
+     "data": {
+      "text/plain": [
+       "'\\nThe invariant for total is that it cannot be greater than the maximum value in the list.\\nI beleive that the output will be the maxim value in the list: 5\\n'"
+      ]
+     },
+     "execution_count": 4,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "\n",
+    "nums = [5, 1, 4, 2]\n",
+    "total = 0\n",
+    "for n in nums:\n",
+    "    total = max(total, n)\n",
+    "print(total)\n",
+    "\n",
+    "# Prediction:\n",
+    "'''\n",
+    "The invariant is that at the start of each iteration, total equals \n",
+    "the maximum value seen so far in the list.\n",
+    "I beleive that the output will be the maxim value in the list: 5\n",
+    "'''\n",
+    "# Explanation:\n",
+    "'''\n",
+    "The code compares each number on the list to the value of total which is 0 in this case.\n",
+    "Then a new object for total is created and that new object holds the new value of total \n",
+    "which could be the original value which was initialized or a new value derived from the max operation.\n",
+    "In other words,At each iteration, total is updated to the maximum of its current value and the current \n",
+    "element of the list.\n",
+    "'''\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "10",
+   "metadata": {},
+   "source": [
+    "### Problem 5 — Off-by-one reasoning\n",
+    "Predict the output.\n",
+    "```python\n",
+    "count = 0\n",
+    "for i in range(1, 10):\n",
+    "    if i % 3 == 0:\n",
+    "        count += 1\n",
+    "print(count)\n",
+    "```"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "11",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "3\n"
+     ]
+    },
+    {
+     "data": {
+      "text/plain": [
+       "'\\nI beleive that the output will be 3\\n'"
+      ]
+     },
+     "execution_count": 5,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "\n",
+    "count = 0\n",
+    "for i in range(1, 10):\n",
+    "    if i % 3 == 0:\n",
+    "        count += 1\n",
+    "print(count)\n",
+    "\n",
+    "# Prediction:\n",
+    "'''\n",
+    "I beleive that the number 3 will be printed\n",
+    "'''\n",
+    "# Explanation:\n",
+    "'''\n",
+    "At first count is initialized to 0. Then the for loop counts from numbers 1 to 10(excuding 10)\n",
+    "and checks if each number hes a remainder of 0 when divided by 3. If the condition is met then\n",
+    "count increases by 1. Numbers 3,6, and 9 meet the criteria of the if statement so the count is 3.\n",
+    "'''\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "12",
+   "metadata": {},
+   "source": [
+    "### Problem 6 — Nested loop with break\n",
+    "Predict the output.\n",
+    "```python\n",
+    "for i in range(3):\n",
+    "    for j in range(3):\n",
+    "        if i == j:\n",
+    "            break\n",
+    "        print(i, j)\n",
+    "```"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "13",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "1 0\n",
+      "2 0\n",
+      "2 1\n"
+     ]
+    },
+    {
+     "data": {
+      "text/plain": [
+       "'\\nI think that the output will be 1 0\\n                                2 0\\n                                2 1\\n'"
+      ]
+     },
+     "execution_count": 7,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "\n",
+    "for i in range(3):\n",
+    "    for j in range(3):\n",
+    "        if i == j:\n",
+    "            break\n",
+    "        print(i, j)\n",
+    "\n",
+    "# Prediction:\n",
+    "'''\n",
+    "I think that the output will be 1 0\n",
+    "                                2 0\n",
+    "                                2 1\n",
+    "'''\n",
+    "# Explanation:\n",
+    "'''\n",
+    "Each of the loops count from 0 to 3(excluding 3). For each value of i, j will cound up within the\n",
+    "same range and only the combaniation of numbers that are not homogenous will be printed. If the\n",
+    "pair of numbers is homogenous then the print stamement is not executed.\n",
+    "'''\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "14",
+   "metadata": {},
+   "source": [
+    "### Problem 7 — While loop with state change\n",
+    "Predict the output and number of iterations.\n",
+    "```python\n",
+    "x = 20\n",
+    "while x > 1:\n",
+    "    if x % 2 == 0:\n",
+    "        x //= 2\n",
+    "    else:\n",
+    "        x -= 1\n",
+    "    print(x)\n",
+    "```"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "15",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "10\n",
+      "5\n",
+      "4\n",
+      "2\n",
+      "1\n"
+     ]
+    },
+    {
+     "data": {
+      "text/plain": [
+       "'\\nI beleive that the number of itterations will be 5\\n\\nI beleive that the output will be: 10 5 4 2 1\\n'"
+      ]
+     },
+     "execution_count": 8,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "\n",
+    "x = 20\n",
+    "while x > 1:\n",
+    "    if x % 2 == 0:\n",
+    "        x //= 2\n",
+    "    else:\n",
+    "        x -= 1\n",
+    "    print(x)\n",
+    "\n",
+    "# Prediction:\n",
+    "'''\n",
+    "I beleive that the number of itterations will be 5 and I think that the output will be: 10 5 4 2 1\n",
+    "'''\n",
+    "# Explanation:\n",
+    "'''\n",
+    "The function take the starting value of of x and checks to see if is greater than 1.\n",
+    "If it is true then another condition is checked and this is to see if the value of x is divisible by 2.\n",
+    "If these 2 conditions are met then the value of x is changed to the quocient of x divided by 2.\n",
+    "If only the first considion is met then x just counts down by 1.\n",
+    "\n",
+    "'''\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "16",
+   "metadata": {},
+   "source": [
+    "### Problem 8 — Trick loop (mutation during iteration)\n",
+    "Predict the final list.\n",
+    "```python\n",
+    "nums = [1, 2, 3, 4]\n",
+    "for i in range(len(nums)):\n",
+    "    if nums[i] % 2 == 0:\n",
+    "        nums[i] *= 10\n",
+    "print(nums)\n",
+    "```"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "17",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[1, 20, 3, 40]\n"
+     ]
+    },
+    {
+     "data": {
+      "text/plain": [
+       "'\\nI think that the final list will be [1,20,3,40]\\n'"
+      ]
+     },
+     "execution_count": 9,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "\n",
+    "nums = [1, 2, 3, 4]\n",
+    "for i in range(len(nums)):\n",
+    "    if nums[i] % 2 == 0:\n",
+    "        nums[i] *= 10\n",
+    "print(nums)\n",
+    "\n",
+    "# Prediction:\n",
+    "'''\n",
+    "I think that the final list will be [1,20,3,40]\n",
+    "'''\n",
+    "# Explanation:\n",
+    "'''\n",
+    "The for loop runs for the entire length of the list and it checks each value in the list to see if it\n",
+    "is an even number. If the number is even then due to lists mutable property the original list is mutated\n",
+    "and the value if multiplied by 10. If the value is odd then the no operations are executed.\n",
+    "'''\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "18",
+   "metadata": {},
+   "source": [
+    "## Part B — Functions (7 problems)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "19",
+   "metadata": {},
+   "source": [
+    "### Problem 9 — Parameter binding\n",
+    "Predict the output and explain parameter binding.\n",
+    "```python\n",
+    "def f(a, b=2, c=3):\n",
+    "    return a + b*10 + c*100\n",
+    "print(f(1, 4))\n",
+    "```"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "20",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "341\n"
+     ]
+    },
+    {
+     "data": {
+      "text/plain": [
+       "'\\nI think that the ouput will be 81\\n'"
+      ]
+     },
+     "execution_count": 10,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "\n",
+    "def f(a, b=2, c=3):\n",
+    "    return a + b*10 + c*100\n",
+    "print(f(1, 4))\n",
+    "\n",
+    "# Prediction:\n",
+    "'''\n",
+    "I think that the ouput will be 341\n",
+    "'''\n",
+    "# Explanation:\n",
+    "'''\n",
+    "The inputs into the function are 1 for a and 4 for b. Because there is no explicit input for c\n",
+    "the default value of 3 is used. After doing the operations(1 + 40 + 300), 341 is the final result.\n",
+    "\n",
+    "'''\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "21",
+   "metadata": {},
+   "source": [
+    "### Problem 10 — Keyword vs positional\n",
+    "Predict all outputs.\n",
+    "```python\n",
+    "def g(x, y=5, z=7):\n",
+    "    return x, y, z\n",
+    "print(g(1))\n",
+    "print(g(1, z=9))\n",
+    "print(g(1, 9))\n",
+    "```"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "22",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "(1, 5, 7)\n",
+      "(1, 5, 9)\n",
+      "(1, 9, 7)\n"
+     ]
+    },
+    {
+     "data": {
+      "text/plain": [
+       "'\\nI beleive that the 3 outputs will be:\\n1 5 7 \\n1 5 9\\n1 9 7\\n'"
+      ]
+     },
+     "execution_count": 11,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "\n",
+    "def g(x, y=5, z=7):\n",
+    "    return x, y, z\n",
+    "print(g(1))\n",
+    "print(g(1, z=9))\n",
+    "print(g(1, 9))\n",
+    "\n",
+    "# Prediction:\n",
+    "'''\n",
+    "I beleive that the 3 outputs will be:\n",
+    "1 5 7 \n",
+    "1 5 9\n",
+    "1 9 7\n",
+    "'''\n",
+    "# Explanation:\n",
+    "'''\n",
+    "In the first print statement 1 becaome the value of x and all default values are retained.\n",
+    "In the second statement 1 take the value of x and 9 takes the value of z because it is specified and the value of y remains constant.\n",
+    "In the third statement 1 takes the value of x and 9 takes the value of y and z stays constant.\n",
+    "'''\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "23",
+   "metadata": {},
+   "source": [
+    "### Problem 11 — Mutable argument (mutation)\n",
+    "Does the caller’s list change? Why?\n",
+    "```python\n",
+    "def update(nums):\n",
+    "    nums.append(99)\n",
+    "a = [1, 2, 3]\n",
+    "update(a)\n",
+    "print(a)\n",
+    "```"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "id": "24",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[1, 2, 3, 99]\n"
+     ]
+    },
+    {
+     "data": {
+      "text/plain": [
+       "'\\nThe callers list changes because lits are mutable. as a result the update function adds\\nthe number 99 to the end of the list.\\n\\n'"
+      ]
+     },
+     "execution_count": 12,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "\n",
+    "def update(nums):\n",
+    "    nums.append(99)\n",
+    "a = [1, 2, 3]\n",
+    "update(a)\n",
+    "print(a)\n",
+    "\n",
+    "# Prediction:\n",
+    "'''\n",
+    " The output will be: 1 2 3 99\n",
+    "'''\n",
+    "# Explanation:\n",
+    "'''\n",
+    "The callers list changes because lits are mutable. as a result the update function adds\n",
+    "the number 99 to the end of the list.\n",
+    "\n",
+    "'''\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "25",
+   "metadata": {},
+   "source": [
+    "### Problem 12 — Mutable argument (reassignment)\n",
+    "Does the caller’s list change? Why?\n",
+    "```python\n",
+    "def update(nums):\n",
+    "    nums = nums + [99]\n",
+    "a = [1, 2, 3]\n",
+    "update(a)\n",
+    "print(a)\n",
+    "```"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "26",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[1, 2, 3]\n"
+     ]
+    },
+    {
+     "data": {
+      "text/plain": [
+       "'\\nNo, the callers list does not change because a list is created and the original list\\nis not modified.\\n'"
+      ]
+     },
+     "execution_count": 13,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "\n",
+    "def update(nums):\n",
+    "    nums = nums + [99]\n",
+    "a = [1, 2, 3]\n",
+    "update(a)\n",
+    "print(a)\n",
+    "\n",
+    "# Prediction:\n",
+    "'''\n",
+    "The output will be: 1 2 3\n",
+    "'''\n",
+    "# Explanation:\n",
+    "'''\n",
+    "No, the callers list does not change because a list is created(reassignment) and the original list\n",
+    "is not modified.\n",
+    "'''\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "27",
+   "metadata": {},
+   "source": [
+    "### Problem 13 — Default parameter trap\n",
+    "Predict the outputs.\n",
+    "```python\n",
+    "def add_item(item, bucket=[]):\n",
+    "    bucket.append(item)\n",
+    "    return bucket\n",
+    "print(add_item(1))\n",
+    "print(add_item(2))\n",
+    "```"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "28",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[1]\n",
+      "[1, 2]\n"
+     ]
+    },
+    {
+     "data": {
+      "text/plain": [
+       "'\\nI think that the output will be: 1 and 1 2\\n\\n'"
+      ]
+     },
+     "execution_count": 14,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "\n",
+    "def add_item(item, bucket=[]):\n",
+    "    bucket.append(item)\n",
+    "    return bucket\n",
+    "print(add_item(1))\n",
+    "print(add_item(2))\n",
+    "\n",
+    "# Prediction:\n",
+    "'''\n",
+    "I think that the output will be: 1 and 1 2\n",
+    "\n",
+    "'''\n",
+    "# Explanation:\n",
+    "'''\n",
+    "The function adds each input into a list. The first use of the function adds 1 to the empty list and\n",
+    "the second list function adds 2 to the muttable list.\n",
+    "'''\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "29",
+   "metadata": {},
+   "source": [
+    "### Problem 14 — Return vs print\n",
+    "Predict the output.\n",
+    "```python\n",
+    "def h(x):\n",
+    "    print(x + 1)\n",
+    "result = h(5)\n",
+    "print(result)\n",
+    "```"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "30",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "6\n",
+      "None\n"
+     ]
+    },
+    {
+     "data": {
+      "text/plain": [
+       "'\\nI think that the output will be: 6\\n'"
+      ]
+     },
+     "execution_count": 15,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "\n",
+    "def h(x):\n",
+    "    print(x + 1)\n",
+    "result = h(5)\n",
+    "print(result)\n",
+    "\n",
+    "# Prediction:\n",
+    "'''\n",
+    "I think that the output will be: 6 and none\n",
+    "'''\n",
+    "# Explanation:\n",
+    "'''\n",
+    "6 is printed because the operation adds 1 to the input of 5. Non is printed because there is no\n",
+    "return statement in the function\n",
+    "'''\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "31",
+   "metadata": {},
+   "source": [
+    "### Problem 15 — Function invariant\n",
+    "What invariant must hold for `total`? Predict the output.\n",
+    "```python\n",
+    "def sum_positive(nums):\n",
+    "    total = 0\n",
+    "    for n in nums:\n",
+    "        if n > 0:\n",
+    "            total += n\n",
+    "    return total\n",
+    "print(sum_positive([-1, 2, -3, 4]))\n",
+    "```"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "32",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "6\n"
+     ]
+    },
+    {
+     "data": {
+      "text/plain": [
+       "'\\nI think the at the output will be: 6\\n'"
+      ]
+     },
+     "execution_count": 16,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "\n",
+    "def sum_positive(nums):\n",
+    "    total = 0\n",
+    "    for n in nums:\n",
+    "        if n > 0:\n",
+    "            total += n\n",
+    "    return total\n",
+    "print(sum_positive([-1, 2, -3, 4]))\n",
+    "\n",
+    "# Prediction:\n",
+    "'''\n",
+    "I think the at the output will be: 6\n",
+    "'''\n",
+    "# Explanation:\n",
+    "'''\n",
+    "The function has a condition that only positive numbers are added\n",
+    "and the list has 2 and 4 as positive numbers. The sum of 2 and 4 is 6.\n",
+    "\n",
+    "The invariant is that at the beginning of each loop iteration, total equals the sum\n",
+    "of all positive numbers encountered so far.\n",
+    "'''\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "33",
+   "metadata": {},
+   "source": [
+    "## Part C — Imports (5 problems)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "34",
+   "metadata": {},
+   "source": [
+    "### Problem 16 — Syntax vs importability\n",
+    "Which lines are **valid syntax**? Which will **run successfully**? Explain.\n",
+    "```python\n",
+    "from packages.utils import helper\n",
+    "from packages/utils import helper\n",
+    "import packages.utils\n",
+    "```"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "35",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Explanation:\n",
+    "'''\n",
+    "Lines 1 and 3 are valid syntax. The lined will run only if the \n",
+    "package and module exist and are discoverable in Python’s path.\n",
+    "'''\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "36",
+   "metadata": {},
+   "source": [
+    "### Problem 17 — `sys.path` reasoning\n",
+    "Explain why the blank entry (`''`) may appear in `sys.path` and what it represents."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "37",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Explanation:\n",
+    "'''\n",
+    "The empty string '' in sys.path represents the current working directory.\n",
+    "It allows Python to search for modules in the directory from which the script\n",
+    "was executed (or where the interpreter was started)\n",
+    "'''\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "38",
+   "metadata": {},
+   "source": [
+    "### Problem 18 — Package resolution\n",
+    "Given:\n",
+    "```\n",
+    "root/\n",
+    "  src/\n",
+    "    main.py\n",
+    "  packages/\n",
+    "    utils.py\n",
+    "```\n",
+    "What directory must be on `sys.path` for this to work?\n",
+    "```python\n",
+    "from packages import utils\n",
+    "```"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "39",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Explanation:\n",
+    "'''\n",
+    "Root/ much be on sys.path for it to work. This is because Python searched for the \n",
+    "package name inside each directory listed inside of sys.path. Since packages in inside of root\n",
+    "the directory is needed for the imprt to work.\n",
+    "'''\n",
+    "\n",
+    "\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "40",
+   "metadata": {},
+   "source": [
+    "### Problem 19 — Incorrect path placement\n",
+    "Why does adding `root/packages` to `sys.path` break this import?\n",
+    "```python\n",
+    "from packages import utils\n",
+    "```"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "41",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Explanation:\n",
+    "'''\n",
+    "This would break the import because looks for the package named packages\n",
+    "inside the directories in sys.path. If root/packages is on sys.path.\n",
+    "Python will look for root/packages/packages, which does not exist.\n",
+    "'''\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "42",
+   "metadata": {},
+   "source": [
+    "### Problem 20 — Notebook vs `.py` anchoring\n",
+    "Explain why notebooks typically use `Path.cwd()` while `.py` files use `Path(__file__)`."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "43",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Explanation:\n",
+    "'''\n",
+    "Notebooks use Path.cwd() because they do not have file properties so they need to be\n",
+    "attatched to the current working directory.\n",
+    ".py files use Path(__file__) because file gives the location of the script. This allows\n",
+    "paths to be constructed relative to the script’s directory rather than the execution location.\n",
+    "\n",
+    "'''\n",
+    "\n"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "base",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.13.9"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
