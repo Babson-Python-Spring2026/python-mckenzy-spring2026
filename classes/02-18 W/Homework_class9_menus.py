@@ -214,18 +214,84 @@ while True:
     elif choice == 2:
         while True:
             fn2.clear_screen()
-            fn2.print_header('Portfolios level 2')            
-            options = ['Trade', 'Performance'] # level 2
-            ''' TODO
-                 .
-                 .
-                 .
-                 .
-            '''
-            print("This side of our menu is not yet implemented. ") 
-            fn2.pause(2)
-            fn2.clear_screen()
-            exit()
+            fn2.print_header('Portfolios level 2')
+            options=['Buy', 'Sell'] #level 2 options
+            fn2.display_menu(options)
+            choice = fn2.get_menu_choice(options)
+
+            if choice is None:
+                print('return to level 1')
+                fn2.pause(1)
+                break
+            elif choice == 1:
+                while True:
+                    fn2.clear_screen()
+                    fn2.print_header('Select Portfolio level 3')
+                    options=['Buy', 'Sell'] #level 3 options
+                    fn2.display_menu(options)
+                    choice = fn2.get_menu_choice(options)
+
+                    if choice is None:
+                        print('return to level 2')
+                        fn2.pause(1)
+                        break
+                    elif choice == 1:
+                        # no while statement leaf
+                        fn2.clear_screen()
+                        fn2.print_header('View Portfolio Buy Summary level 4')
+                        # no options leaf
+                        print('you have reached Portfolio Buy Summary')
+                        print('returning to level 3') 
+                        fn2.pause(1)
+                        
+                        continue # not needed but shows intent
+                           
+                    elif choice == 2:
+                        # no while statement leaf
+                        fn2.clear_screen()
+                        fn2.print_header('View Portfolio Sell Summary level 4')
+                        # no options leaf
+                        print('you have reached Portfolio Sell Summary')
+                        print('returning to level 3') 
+                        fn2.pause(1)
+
+                        continue # not needed but shows intent
+
+            elif choice == 2:
+                while True:
+                    fn2.clear_screen()
+                    fn2.print_header('Create Portfolio level 3')
+                    options=['Holdings Snapshot', 'P/L Report'] #level 3 options
+                    fn2.display_menu(options)
+                    choice = fn2.get_menu_choice(options)
+
+                    if choice is None:
+                        print('return to level 2')
+                        fn2.pause(1)
+                        break
+                    elif choice == 1:
+                        # no while statement leaf
+                        fn2.clear_screen()
+                        fn2.print_header('Holdings Snapshot level 4')
+                        # no options leaf
+                        print('you have reached Holdings Snapshot')
+                        print('returning to level 3') 
+                        fn2.pause(1)
+
+                        continue # not needed but shows intent
+                           
+                    elif choice == 2:
+                        # no while statement leaf
+                        fn2.clear_screen()
+                        fn2.print_header('P/L Report level 4')
+                        # no options leaf
+                        print('you have reached P/L Report')
+                        print('returning to level 3') 
+                        fn2.pause(1) 
+
+
+
+            
         
 
 
