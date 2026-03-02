@@ -316,22 +316,4 @@ while True:
             requirement of valid inputs(only 1,2 and none)
             
             '''
-
-
-
-
-            
-        
-
-
-
-
-
-
-
-
-
-
-
-
     
