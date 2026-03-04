@@ -29,6 +29,8 @@ def create_board() -> list[int]:
     Returns:
         A list containing the numbers 1 through 9.
     """
+    
+    return [1, 2, 3, 4, 5, 6, 7, 8, 9]
     pass
 
 
@@ -68,6 +70,12 @@ def check_tie(board: list[int]) -> bool:
         True  → if no open squares remain
         False → otherwise
     """
+
+    for space in board:
+        if space >= 1 and space <= 9:
+            return False   
+    
+    return True 
     pass
 
 
@@ -86,6 +94,26 @@ def check_winner(board: list[int]) -> str | None:
     Returns:
         'X', 'O', or None
     """
+    winning_combinations = [
+        (0, 1, 2),
+        (3, 4, 5),
+        (6, 7, 8),
+        (0, 3, 6),
+        (1, 4, 7),
+        (2, 5, 8),
+        (0, 4, 8),
+        (2, 4, 6)
+    ]
+    
+    for a, b, c in winning_combinations:
+        total = board[a] + board[b] + board[c]
+        
+        if total == 30:
+            return 'X'
+        elif total == -30:
+            return 'O'
+    
+    return None
     pass
 
 
