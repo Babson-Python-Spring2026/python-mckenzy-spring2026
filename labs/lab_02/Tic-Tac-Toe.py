@@ -1,8 +1,6 @@
 """
 TIC TAC TOE — FUNCTION SCAFFOLD
 
-Lab 2 (tictactoe) is due Monday March 9th, 2026
-
 Board Representation Rules:
 - Board is a list of 9 integers.
 - 1-9  → open squares
@@ -97,7 +95,6 @@ def game_over(board: list[int], x_moves: bool) -> str | None:
     - If a player has won, return 'X' or 'O'
     - If the board is full and no winner, return 'TIE'
     - Otherwise return None
-    - function should call both check_winner() and check_tie()
     """
     pass
 
@@ -179,4 +176,3 @@ def play_game() -> None:
     - Prints the game progression and final result to the console.
     """
     pass
-
