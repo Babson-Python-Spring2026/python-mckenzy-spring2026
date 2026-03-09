@@ -1,4 +1,6 @@
 """
+Due Next Friday
+the program counts the number of final boards that are unique
 Homework: Reading Code with State / Transitions / Invariants (Tic-Tac-Toe)
 
 This program brute-forces tic-tac-toe WITHOUT recursion.

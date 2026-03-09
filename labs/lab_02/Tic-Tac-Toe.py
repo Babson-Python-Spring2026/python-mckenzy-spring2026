@@ -19,6 +19,29 @@ Assume:
 -O is computer
 """
 
+"""
+TIC TAC TOE — FUNCTION SCAFFOLD
+
+Lab 2 (tictactoe) is due Monday March 9th, 2026
+
+Board Representation Rules:
+- Board is a list of 9 integers.
+- 1-9  → open squares
+- 10   → X
+- -10  → O
+
+Winning rule:
+- Any row, column, or diagonal that sums to:
+    30   → X wins
+   -30   → O wins
+
+
+Assume:
+- X plays first
+- X is human
+-O is computer
+"""
+
 
 def create_board() -> list[int]:
     """
@@ -27,7 +50,9 @@ def create_board() -> list[int]:
     Returns:
         A list containing the numbers 1 through 9.
     """
-    pass
+    
+    return [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
 
 
 def display_board(board: list[int]) -> None:
@@ -66,7 +91,13 @@ def check_tie(board: list[int]) -> bool:
         True  → if no open squares remain
         False → otherwise
     """
-    pass
+
+    for space in board:
+        if space >= 1 and space <= 9:
+            return False   
+    
+    return True 
+
 
 
 
@@ -84,7 +115,27 @@ def check_winner(board: list[int]) -> str | None:
     Returns:
         'X', 'O', or None
     """
-    pass
+    winning_combinations = [
+        (0, 1, 2),
+        (3, 4, 5),
+        (6, 7, 8),
+        (0, 3, 6),
+        (1, 4, 7),
+        (2, 5, 8),
+        (0, 4, 8),
+        (2, 4, 6)
+    ]
+    
+    for a, b, c in winning_combinations:
+        total = board[a] + board[b] + board[c]
+        
+        if total == 30:
+            return 'X'
+        elif total == -30:
+            return 'O'
+    
+    return None
+
 
 
 def game_over(board: list[int], x_moves: bool) -> str | None:
@@ -95,8 +146,20 @@ def game_over(board: list[int], x_moves: bool) -> str | None:
     - If a player has won, return 'X' or 'O'
     - If the board is full and no winner, return 'TIE'
     - Otherwise return None
+    - function should call both check_winner() and check_tie()
     """
-    pass
+
+    winner = check_winner(board)
+
+    if winner is not None:
+        return winner
+
+    if check_tie(board):
+        return 'TIE'
+
+    return None
+
+
 
 
 def get_human_move(board: list[int]) -> str:
@@ -106,7 +169,10 @@ def get_human_move(board: list[int]) -> str:
     Returns:
         The raw input string entered by the user.
     """
-    pass
+    move = input("Choose a square (1-9): ")
+    return move
+    
+
 
 
 def get_computer_move(board: list[int]) -> int:
@@ -120,7 +186,11 @@ def get_computer_move(board: list[int]) -> int:
     Returns:
         An integer representing the chosen square number.
     """
-    pass
+    for space in board:
+        if space >= 1 and space <= 9:
+            return space
+
+    
 
 
 def is_valid_move(board: list[int], move: str) -> tuple[bool, int | None]:
@@ -136,7 +206,21 @@ def is_valid_move(board: list[int], move: str) -> tuple[bool, int | None]:
         (True, index)  → if valid
         (False, None)  → otherwise
     """
-    pass
+    try:
+        move_int = int(move)
+    except ValueError:
+        return (False, None)
+
+    if move_int < 1 or move_int > 9:
+        return (False, None)
+
+    index = move_int - 1
+
+    if board[index] == 10 or board[index] == -10:
+        return (False, None)
+
+    return (True, index)
+    
 
 
 def place_move(board: list[int], index: int, x_moves: bool) -> None:
@@ -148,7 +232,12 @@ def place_move(board: list[int], index: int, x_moves: bool) -> None:
     - If x_moves is False, place -10
     - Modify the board in place
     """
-    pass
+
+    if x_moves:
+        board[index] = 10
+    else:
+        board[index] = -10
+    
 
 def play_game() -> None:
     """
@@ -175,4 +264,39 @@ def play_game() -> None:
     Output:
     - Prints the game progression and final result to the console.
     """
-    pass
+    board = create_board()
+    x_moves = True
+
+    while True:
+
+        display_board(board)
+
+        if x_moves:
+            move = get_human_move(board)
+        else:
+            print("Computer thinking...")
+            move = str(get_computer_move(board))
+
+        is_valid = is_valid_move(board, move)
+
+        if not is_valid[0]:
+            print("Invalid move. Try again.")
+            continue
+
+        place_move(board, is_valid[1], x_moves)
+
+        status = game_over(board, x_moves)
+
+        if status:
+            display_board(board)
+
+            if status == "TIE":
+                print("The game is a tie.")
+            else:
+                print(status + " wins the game")
+
+            break
+
+        x_moves = not x_moves
+    
+play_game()
