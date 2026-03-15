@@ -1,6 +1,5 @@
-import kagglehub
+import pandas as pd
 
-# Download latest version
-path = kagglehub.dataset_download("alfathterry/telco-customer-churn-11-1-3")
+print('hi')
 
-print("Path to dataset files:", path)
+y1df = pd.read_csv("data.csv")
