@@ -1,3 +1,12 @@
+'''
+Good overall completion. The duplicated scaffold text makes the file look a 
+little unfinished in presentation, but the core work is there and the 
+program structure is mostly sound.
+
+Grade 87.5
+
+'''
+
 """
 TIC TAC TOE — FUNCTION SCAFFOLD
 

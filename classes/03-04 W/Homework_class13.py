@@ -1,3 +1,34 @@
+'''
+Mckenzy — 7.5 / 10
+
+Overall
+
+Good understanding but not quite as deep as the top submissions.
+
+Strengths
+
+Correct explanations of state and transitions.
+Understands uniqueness via symmetry.
+
+Weaknesses
+
+Some docstrings are short.
+A few conceptual explanations could be more precise.
+
+AI likelihood
+
+Moderate.
+
+Estimated probability: 35–45%
+
+Reason:
+
+Structure resembles AI-generated answers but includes minor mistakes.
+
+GRADE 87.5
+
+'''
+
 """
 Due Next Friday
 the program counts the number of final boards that are unique
