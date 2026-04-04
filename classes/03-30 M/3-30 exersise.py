@@ -9,5 +9,5 @@ with open("classes\\03-30 M\\sp100_daily_prices.csv", "r") as f:
 
 print(dates)
 
-dates.sort()
+dates.sort() # sorts from low to high
 pp(dates)
