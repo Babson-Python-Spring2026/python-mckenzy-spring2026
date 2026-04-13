@@ -44,26 +44,39 @@ def create_transaction(trn_type, date, ticker_universe):
     trn_type = trn_type.lower().strip()
 
     trn = {
-        "date": date,
-        "type": trn_type
+        "date": date
     }
 
+    # 🔥 HANDLE CASH (convert to $$$$ system)
     if trn_type in ["contribution", "withdrawal"]:
         amt = float(input("Enter cash amount: "))
-        trn["amount"] = amt
 
+        trn["ticker"] = "$$$$"
+        trn["shares"] = amt
+        trn["price"] = 1.0
+
+        # convert to buy/sell
+        if trn_type == "contribution":
+            trn["type"] = "buy"
+        else:
+            trn["type"] = "sell"
+
+    # 🔥 HANDLE NORMAL TRADES
     elif trn_type in ["buy", "sell"]:
 
         while True:
             ticker = input("Enter ticker: ").upper().strip()
-            if is_valid_ticker(ticker, ticker_universe):
+
+            # allow $$$$ OR valid ticker
+            if ticker == "$$$$" or is_valid_ticker(ticker, ticker_universe):
                 break
             else:
                 print("Invalid ticker. Not in universe. Try again.")
 
-        shares = int(input("Enter shares: "))
+        shares = float(input("Enter shares: "))
         price = float(input("Enter price: "))
 
+        trn["type"] = trn_type
         trn["ticker"] = ticker
         trn["shares"] = shares
         trn["price"] = price

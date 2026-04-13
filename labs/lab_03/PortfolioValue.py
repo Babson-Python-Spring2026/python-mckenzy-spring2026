@@ -64,6 +64,10 @@ def load_prices():
         return json.load(f)
     
 def get_price_on_date(ticker, as_of_date, prices):
+
+    if ticker == "$$$$":
+        return 1.0  # cash always equals face value
+
     as_of = parse_date(as_of_date)
 
     valid_dates = sorted(
@@ -82,49 +86,30 @@ def get_price_on_date(ticker, as_of_date, prices):
    
 def get_positions(as_of_date, transactions):
     positions = {}
-    cash = 0.0
 
     for txn in transactions:
         if parse_date(txn["date"]) > parse_date(as_of_date):
             continue
 
+        ticker = txn["ticker"]
+        shares = txn["shares"]
         t = txn["type"]
 
-        if t == "contribution":
-            cash += txn["amount"]
-
-        elif t == "withdrawal":
-            cash -= txn["amount"]
-
-        elif t == "buy":
-            ticker = txn["ticker"]
-            shares = txn["shares"]
-            cost = shares * txn["price"]
-
+        if t == "buy":
             positions[ticker] = positions.get(ticker, 0) + shares
-            cash -= cost
 
         elif t == "sell":
-            ticker = txn["ticker"]
-            shares = txn["shares"]
-            proceeds = shares * txn["price"]
-
             positions[ticker] = positions.get(ticker, 0) - shares
-            cash += proceeds
 
-    # Add dividends to cash
-    dividend_income, _ = get_dividend_income(as_of_date, transactions)
-    cash += dividend_income
-
-    positions["$$$$"] = cash
-    return positions, cash
+    return positions
 
 def get_portfolio_value(as_of_date):
     
     transactions = load_transactions()
     prices = load_prices()
 
-    positions, cash = get_positions(as_of_date, transactions)
+    positions = get_positions(as_of_date, transactions)
+    cash = 0
 
     breakdown = {}
     total_value = cash  # start with cash

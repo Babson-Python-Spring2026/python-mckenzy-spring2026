@@ -408,15 +408,24 @@
   },
   {
     "date": "2025-01-03",
-    "type": "contribution",
-    "amount": 379000.0
-  },
-  {
-    "date": "2025-01-03",
     "type": "sell",
     "ticker": "AAPL",
     "shares": 20,
     "price": 400.0
+  },
+  {
+    "date": "2025-01-03",
+    "ticker": "$$$$",
+    "shares": 1000000.0,
+    "price": 1.0,
+    "type": "buy"
+  },
+  {
+    "date": "2025-01-03",
+    "type": "buy",
+    "ticker": "AAPL",
+    "shares": 1000.0,
+    "price": 1000.0
   },
   {
     "date": "2025-01-06",

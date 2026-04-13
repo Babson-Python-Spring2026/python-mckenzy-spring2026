@@ -98,22 +98,29 @@ def get_cash_balance(as_of_date):
     )
 
     cash = 0.0
+
     for txn in relevant:
-        txn_type = txn["type"]
-        if txn_type == "contribution":
-            cash += txn["amount"]
-        elif txn_type == "withdrawal":
-            cash -= txn["amount"]
-        elif txn_type == "buy":
-            cash -= txn["shares"] * txn["price"]
-        elif txn_type == "sell":
-            cash += txn["shares"] * txn["price"]
+        ticker = txn["ticker"]
+        shares = txn["shares"]
+        price = txn["price"]
+        t = txn["type"]
+
+        if ticker == "$$$$":
+            if t == "buy":
+                cash += shares * price
+            elif t == "sell":
+                cash -= shares * price
+
+        else:
+            if t == "buy":
+                cash -= shares * price
+            elif t == "sell":
+                cash += shares * price
 
     dividend_income, dividend_log = get_dividend_income(as_of_date, transactions)
     cash += dividend_income
 
     return cash, relevant, dividend_income, dividend_log
-
 
 def show_cash_balance():
 
