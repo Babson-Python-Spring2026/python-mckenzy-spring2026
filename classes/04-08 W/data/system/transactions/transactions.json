@@ -4017,5 +4017,12 @@
     "ticker": "COF",
     "shares": 25,
     "price": 203.709991
+  },
+  {
+    "date": "2025-02-01",
+    "type": "buy",
+    "ticker": "AAPL",
+    "shares": 0,
+    "price": 0.0
   }
 ]

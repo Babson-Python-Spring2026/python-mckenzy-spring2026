@@ -3,6 +3,8 @@ from CreateTransactions import transaction_session
 from GetCash import show_cash_balance
 from GetTransactionsTicker import show_ticker_history
 from PortfolioValue import show_portfolio_value
+from MenuState import EXIT_PROGRAM
+
 
 def main_menu():
     while True:
@@ -11,7 +13,7 @@ def main_menu():
         print("2. Show Cash Balance")
         print("3. Show Transactions by Ticker")
         print("4. Show Portfolio Value")
-        print("q. Quit")
+        print("q. Quit Current Menu")
 
         choice = input("Choose option: ").strip().lower()
 

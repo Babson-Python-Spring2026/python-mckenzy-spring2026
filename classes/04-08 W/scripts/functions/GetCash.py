@@ -1,8 +1,31 @@
 import json
 from pathlib import Path
+from datetime import datetime
 
 TRANSACTIONS_FILE = Path(r"C:\PythonClass\student_repo\classes\04-08 W\data\system\transactions\transactions.json")
 DIVIDENDS_FILE = Path(r"C:\PythonClass\student_repo\classes\04-06 M\data\system\dividends_dates.json")
+
+def parse_date(d):
+    return datetime.strptime(d, "%Y-%m-%d")
+
+def is_valid_cash_date(as_of_date):
+    try:
+        parse_date(as_of_date)
+    except:
+        return False, "Invalid date format."
+
+    transactions = load_transactions()
+    dividends = load_dividends()
+
+    all_dates = set()
+
+    all_dates.update(t["date"] for t in transactions)
+    all_dates.update(dividends.keys())
+
+    if as_of_date not in all_dates:
+        return False, "Date not found in transaction/dividend data."
+
+    return True, "OK"
 
 def load_transactions():
     if TRANSACTIONS_FILE.exists():
@@ -93,7 +116,17 @@ def get_cash_balance(as_of_date):
 
 
 def show_cash_balance():
-    as_of_date = input("Enter date to check balance (YYYY-MM-DD): ").strip()
+
+    while True:
+        as_of_date = input("Enter date to check balance (YYYY-MM-DD): ").strip()
+
+        valid, message = is_valid_cash_date(as_of_date)
+
+        if valid:
+            break
+        else:
+            print(f"Try again. Invalid date.\n")
+
     cash, relevant, dividend_income, dividend_log = get_cash_balance(as_of_date)
 
     print(f"\nTransactions up to {as_of_date}:")
