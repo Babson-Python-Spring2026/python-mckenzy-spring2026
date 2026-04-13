@@ -3,7 +3,7 @@ from CreateTransactions import transaction_session
 from GetCash import show_cash_balance
 from GetTransactionsTicker import show_ticker_history
 from PortfolioValue import show_portfolio_value
-from MenuState import EXIT_PROGRAM
+
 
 
 def main_menu():
