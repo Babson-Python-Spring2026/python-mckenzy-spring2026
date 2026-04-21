@@ -435,6 +435,13 @@
     "type": "buy"
   },
   {
+    "date": "2025-01-03",
+    "ticker": "$$$$",
+    "shares": 100000.0,
+    "price": 1.0,
+    "type": "sell"
+  },
+  {
     "date": "2025-01-06",
     "type": "buy",
     "record_number": 3,
