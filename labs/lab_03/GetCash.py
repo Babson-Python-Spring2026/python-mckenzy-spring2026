@@ -11,7 +11,7 @@ def parse_date(d):
 def is_valid_cash_date(as_of_date):
     try:
         parse_date(as_of_date)
-    except:
+    except ValueError:
         return False, "Invalid date format."
 
     transactions = load_transactions()
@@ -132,7 +132,7 @@ def show_cash_balance():
         if valid:
             break
         else:
-            print(f"Try again. Invalid date.\n")
+            print(f"Try again. {message}\n")
 
     cash, relevant, dividend_income, dividend_log = get_cash_balance(as_of_date)
 

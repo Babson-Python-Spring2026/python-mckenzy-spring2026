@@ -16,9 +16,9 @@ def load_ticker_universe():
             return set(ticker.upper().strip() for ticker in data)
     return set()
 
-def is_valid_ticker(ticker, universe):
+'''def is_valid_ticker(ticker, universe):
     return ticker.upper().strip() in universe
-
+'''
 def get_transactions_by_ticker(ticker, universe): 
     """
     Return all transactions for a valid ticker, sorted by date.
@@ -59,9 +59,7 @@ def show_ticker_history():
         for txn in results:
             if txn["type"] in ["buy", "sell"]:
                 print(f"{txn['date']} | {txn['type']} | {txn['ticker']} | {txn['shares']} shares @ ${txn['price']}")
-            else:
-                print(f"{txn['date']} | {txn['type']} | ${txn['amount']}")
-
+        
 
 if __name__ == "__main__":
     show_ticker_history()

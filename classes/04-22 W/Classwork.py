@@ -7,11 +7,20 @@ class Student:
        
 
 class School:
-    def __init__(self,name, students):
+    def __init__(self,name):
         self.name = name
         self.students = []
 
     def add_student(self,student):
+
+        max_id = 0
+        for s in self.students:
+            if s.student_id != None:
+                if s.student_id > max_id:
+                    max_id = s.student_id
+        
+        student.student_id = max_id + 1
+
         self.students.append(student)
 
 class Schools:
@@ -32,3 +41,8 @@ eve = Student('Eve', 1)
 babson.add_student(eve)
 
 print(mySchools.schools)
+
+for school in mySchools.schools:
+    print(school.name)
+    for student in school.students:
+        print(student.name,student.student_id)

@@ -5,8 +5,14 @@ from GetTransactionsTicker import show_ticker_history
 from PortfolioValue import show_portfolio_value
 
 
-
 def main_menu():
+    actions = {
+        "1": transaction_session,
+        "2": show_cash_balance,
+        "3": show_ticker_history,
+        "4": show_portfolio_value
+    }
+
     while True:
         print("\n--- MENU ---")
         print("1. Add Transactions")
@@ -17,27 +23,14 @@ def main_menu():
 
         choice = input("Choose option: ").strip().lower()
 
-        if choice not in ["1", "2", "3", "4", "q"]:
-            print("❌ Invalid option. Try again.")
-            continue
-
-        if choice == "1":
-            transaction_session()
-
-        elif choice == "2":
-            show_cash_balance()
-
-        elif choice == "3":
-            show_ticker_history()
-
-        elif choice == "4":
-            show_portfolio_value()
-
-        elif choice == "q":
+        if choice == "q":
             print("Exiting program.")
             break
 
+        if choice not in actions:
+            print("❌ Invalid option. Try again.")
+            continue
 
+        actions[choice]()
 if __name__ == "__main__":
     main_menu()
-

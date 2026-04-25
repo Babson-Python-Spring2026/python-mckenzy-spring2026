@@ -125,7 +125,7 @@ def get_portfolio_value(as_of_date):
 def is_valid_portfolio_date(date_str):
     try:
         datetime.strptime(date_str, "%Y-%m-%d")
-    except:
+    except ValueError:
         return False, "Invalid format. Use YYYY-MM-DD."
 
     prices = load_prices()
@@ -151,7 +151,7 @@ def show_portfolio_value():
         if valid:
             break
         else:
-            print(f"Try again. Invalid date.\n")
+           print(f"Try again. {message}\n")
 
     total, breakdown, positions, cash = get_portfolio_value(as_of_date)
 

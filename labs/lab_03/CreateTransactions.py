@@ -27,7 +27,7 @@ def is_valid_date(date):
     try:
         parse_date(date)
         return True
-    except:
+    except ValueError:
         return False
     
 def is_valid_ticker(ticker, universe):
