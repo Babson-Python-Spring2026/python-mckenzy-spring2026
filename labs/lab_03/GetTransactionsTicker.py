@@ -16,9 +16,7 @@ def load_ticker_universe():
             return set(ticker.upper().strip() for ticker in data)
     return set()
 
-'''def is_valid_ticker(ticker, universe):
-    return ticker.upper().strip() in universe
-'''
+
 def get_transactions_by_ticker(ticker, universe): 
     """
     Return all transactions for a valid ticker, sorted by date.
