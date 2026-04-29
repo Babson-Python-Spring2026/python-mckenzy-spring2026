@@ -81,44 +81,96 @@ def calculate_counts(board, height, width):
                             count += 1
             
             board[r][c][1] = count
+def format_cell(val):
+    """
+    Forces every cell into a fixed visual width so the board never misaligns.
+    """
+    # Convert everything to string
+    val = str(val)
+
+    # Keep bombs visually consistent
+    if val == "💣":
+        return "💣 "
+    
+    # Empty / zero cell
+    if val == " ":
+        return "  "
+    
+    # Numbers and hidden cells
+    return f"{val}  "
+
+def build_divider(width):
+    return "    " + ("----+" * width)
+
 
 def print_board(board, height, width, reveal_all=False):
-    
-    # Header
-    print("  ", end="")
+
+    # =========================
+    # CELL FORMAT (single rule)
+    # =========================
+    def format_cell(val):
+        val = str(val)
+
+        if val == "💣":
+            return "💣 "
+        elif val == " ":
+            return "  "
+        else:
+            return f"{val}  "
+
+    # =========================
+    # HEADER
+    # =========================
+    print("      ", end="")
     for c in range(width):
-        print(c, end="    ")
+        print(f"{c}    ", end="")
     print()
-    
-    print("   " + "- " * (width * 3))
-    
+
+    # =========================
+# DIVIDER (FIXED ALIGNMENT)
+# =========================
+    divider = build_divider(width)
+    print(divider)
+
+    # =========================
+    # BOARD
+    # =========================
     for r in range(height):
-        print(f"{r} |", end=" ")
-        
+        print(f"  {r} | ", end="")
+
         for c in range(width):
             is_bomb, count, revealed = board[r][c]
-            
+
+            # =========================
+            # VALUE LOGIC
+            # =========================
             if reveal_all:
                 if is_bomb:
-                    print("💣", end="  | ")
+                    val = "💣"
                 elif count == 0:
-                    print(" ", end="  | ")
+                    val = " "
                 else:
-                    print(count, end="  | ")
-            
+                    val = str(count)
             else:
                 if not revealed:
-                    print("♦", end="  | ")
+                    val = "♦"
                 else:
                     if is_bomb:
-                        print("💣", end="  | ")
+                        val = "💣"
                     elif count == 0:
-                        print(" ", end="  | ")
+                        val = " "
                     else:
-                        print(count, end="  | ")
-        
+                        val = str(count)
+
+            # =========================
+            # PRINT CELL
+            # =========================
+            print(format_cell(val) + "| ", end="")
+
         print()
-        print("   " + "- " * (width * 3))
+
+        # repeat divider after each row
+        print(divider)
 
 def flood_fill(board, height, width, r, c):
     stack = [(r, c)]
