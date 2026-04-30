@@ -1,3 +1,13 @@
+import os
+import platform
+
+def clear_screen():
+    # Windows
+    if platform.system() == "Windows":
+        os.system("cls")
+    else:
+        # Mac/Linux
+        os.system("clear")
 
 def get_valid_integer(prompt, min_val, max_val):
     while True:
@@ -81,42 +91,26 @@ def calculate_counts(board, height, width):
                             count += 1
             
             board[r][c][1] = count
-def format_cell(val):
-    """
-    Forces every cell into a fixed visual width so the board never misaligns.
-    """
-    # Convert everything to string
-    val = str(val)
 
-    # Keep bombs visually consistent
-    if val == "💣":
-        return "💣 "
-    
-    # Empty / zero cell
-    if val == " ":
-        return "  "
-    
-    # Numbers and hidden cells
-    return f"{val}  "
 
 def build_divider(width):
     return "    " + ("----+" * width)
 
+def format_cell(val):
+    val = str(val)
+
+    # Emoji fix (treat as width 2)
+    if val == "💣":
+        return f"{val:^2} "   # I figured out this part on my own, The bombs take about 2 spaces when generated
+                            # so I make 2 cells generated when a bomb is in a cell to reach my 4
+                            # space constant per cell regardless of what item is inside the cell
+    
+    return f"{val:^4}"
+
 
 def print_board(board, height, width, reveal_all=False):
 
-    # =========================
-    # CELL FORMAT (single rule)
-    # =========================
-    def format_cell(val):
-        val = str(val)
-
-        if val == "💣":
-            return "💣 "
-        elif val == " ":
-            return "  "
-        else:
-            return f"{val}  "
+    
 
     # =========================
     # HEADER
@@ -136,7 +130,7 @@ def print_board(board, height, width, reveal_all=False):
     # BOARD
     # =========================
     for r in range(height):
-        print(f"  {r} | ", end="")
+        print(f"  {r} |", end="")
 
         for c in range(width):
             is_bomb, count, revealed = board[r][c]
@@ -165,7 +159,7 @@ def print_board(board, height, width, reveal_all=False):
             # =========================
             # PRINT CELL
             # =========================
-            print(format_cell(val) + "| ", end="")
+            print(format_cell(val) + "|", end="")
 
         print()
 
@@ -230,23 +224,31 @@ def play_game():
     board = create_board(height, width)
     place_mines(board, height, width, mines)
     calculate_counts(board, height, width)
+    clear_screen()
     
     # Game loop
     while True:
+        clear_screen()
         print_board(board, height, width)
         
-        col = get_valid_coordinate("How many over would you like to dig? : ", width - 1)
-        row = get_valid_coordinate("How many down would you like to dig? : ", height - 1)
-        
-        # Already revealed
-        if board[row][col][2]:
-            print("That cell already exposed! Try again")
-            continue
+        while True:
+            col = get_valid_coordinate("How many over would you like to dig? : ", width - 1)
+            row = get_valid_coordinate("How many down would you like to dig? : ", height - 1)
+
+            if board[row][col][2]:
+                clear_screen()
+                print_board(board, height, width)
+                print("That cell is already revealed. Choose a different one.\n")
+            else:
+                break
+
+        clear_screen()
         
         is_bomb, count, _ = board[row][col]
         
         # Lose condition
         if is_bomb:
+            clear_screen()
             print_board(board, height, width, reveal_all=True)
             print("Game Over!")
             break
